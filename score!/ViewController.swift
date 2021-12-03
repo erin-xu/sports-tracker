@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private var scrollView: UIScrollView!
+    private var contentView = UIView()
+    
     private var upcomingLabel = UILabel()
     private var mensLabel = UILabel()
     private var womensLabel = UILabel()
@@ -30,6 +33,21 @@ class ViewController: UIViewController {
         title = "Score!"
         view.backgroundColor = .white
         
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .white
+        
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 700, height: 800))
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .white
+        scrollView.contentSize = contentView.frame.size
+            
+//            CGSize(width: UIScreen.main.bounds.width, height: 2000)
+        scrollView.isScrollEnabled = true
+        scrollView.showsVerticalScrollIndicator = true
+        
+        
+        
+        
         setupLabels()
         
         let layout1 = UICollectionViewFlowLayout()
@@ -48,7 +66,7 @@ class ViewController: UIViewController {
         upcomingCollectionView.dataSource = self
         upcomingCollectionView.delegate = self
         
-        view.addSubview(upcomingCollectionView)
+        contentView.addSubview(upcomingCollectionView)
         
         let layout2 = UICollectionViewFlowLayout()
         layout2.scrollDirection = .horizontal
@@ -59,13 +77,14 @@ class ViewController: UIViewController {
         mensCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout2)
         mensCollectionView.backgroundColor = .clear
         mensCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        mensCollectionView.showsHorizontalScrollIndicator = false
         
         mensCollectionView.register(SportCollectionViewCell.self, forCellWithReuseIdentifier: sportsCellReuseIdentifier)
         
         mensCollectionView.dataSource = self
         mensCollectionView.delegate = self
         
-        view.addSubview(mensCollectionView)
+        contentView.addSubview(mensCollectionView)
         
         let layout3 = UICollectionViewFlowLayout()
         layout3.scrollDirection = .horizontal
@@ -76,13 +95,18 @@ class ViewController: UIViewController {
         womensCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout3)
         womensCollectionView.backgroundColor = .clear
         womensCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        womensCollectionView.showsHorizontalScrollIndicator = false
         
         womensCollectionView.register(SportCollectionViewCell.self, forCellWithReuseIdentifier: sportsCellReuseIdentifier)
         
         womensCollectionView.dataSource = self
         womensCollectionView.delegate = self
         
-        view.addSubview(womensCollectionView)
+        contentView.addSubview(womensCollectionView)
+        
+        scrollView.addSubview(contentView)
+        
+        view.addSubview(scrollView)
         
         setupConstraints()
     }
@@ -91,50 +115,70 @@ class ViewController: UIViewController {
         upcomingLabel.text = "Upcoming Events"
         upcomingLabel.font = .systemFont(ofSize: 20)
         upcomingLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(upcomingLabel)
+        contentView.addSubview(upcomingLabel)
         
         mensLabel.text = "Men's Sports"
         mensLabel.font = .systemFont(ofSize: 20)
         mensLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(mensLabel)
+        contentView.addSubview(mensLabel)
         
         womensLabel.text = "Women's Sports"
         womensLabel.font = .systemFont(ofSize: 20)
         womensLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(womensLabel)
+        contentView.addSubview(womensLabel)
     }
     
     func setupConstraints() {
-        let collectionViewPadding: CGFloat = 12
+        let collectionViewPadding: CGFloat = 8
         NSLayoutConstraint.activate([
-            upcomingLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: collectionViewPadding),
-            upcomingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
+        ])
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1.1)
+        ])
+        NSLayoutConstraint.activate([
+            upcomingLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: collectionViewPadding),
+            upcomingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            upcomingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            upcomingLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 34),
         ])
         NSLayoutConstraint.activate([
             upcomingCollectionView.topAnchor.constraint(equalTo: upcomingLabel.bottomAnchor, constant: collectionViewPadding),
-            upcomingCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
+            upcomingCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: collectionViewPadding),
             upcomingCollectionView.bottomAnchor.constraint(equalTo: upcomingLabel.topAnchor, constant: 250),
-            upcomingCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
+            upcomingCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -collectionViewPadding)
         ])
         NSLayoutConstraint.activate([
-            mensLabel.topAnchor.constraint(equalTo: upcomingCollectionView.bottomAnchor, constant: 15),
-            mensLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            mensLabel.topAnchor.constraint(equalTo: upcomingCollectionView.bottomAnchor, constant: 25),
+            mensLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            mensLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            mensLabel.bottomAnchor.constraint(equalTo: upcomingCollectionView.bottomAnchor, constant: 44),
         ])
         NSLayoutConstraint.activate([
             mensCollectionView.topAnchor.constraint(equalTo: mensLabel.bottomAnchor, constant: collectionViewPadding),
-            mensCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
+            mensCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: collectionViewPadding),
             mensCollectionView.bottomAnchor.constraint(equalTo: mensLabel.topAnchor, constant: 150),
-            mensCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
+            mensCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -collectionViewPadding)
         ])
         NSLayoutConstraint.activate([
             womensLabel.topAnchor.constraint(equalTo: mensCollectionView.bottomAnchor, constant: 15),
-            womensLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            womensLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            womensLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            womensLabel.bottomAnchor.constraint(equalTo: mensCollectionView.bottomAnchor, constant: 34),
         ])
         NSLayoutConstraint.activate([
             womensCollectionView.topAnchor.constraint(equalTo: womensLabel.bottomAnchor, constant: collectionViewPadding),
-            womensCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
+            womensCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: collectionViewPadding),
             womensCollectionView.bottomAnchor.constraint(equalTo: womensLabel.topAnchor, constant: 150),
-            womensCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
+            womensCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -collectionViewPadding)
         ])
     }
 
@@ -170,11 +214,21 @@ extension ViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sportsCellReuseIdentifier, for: indexPath) as! SportCollectionViewCell
             let sport = mensSports[indexPath.item]
             cell.configure(for: sport)
+            cell.layer.shadowColor = UIColor.lightGray.cgColor
+            cell.layer.shadowOffset = CGSize(width: 3, height: 3)
+            cell.layer.shadowRadius = 3.0
+            cell.layer.shadowOpacity = 1
+            cell.layer.masksToBounds = false
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sportsCellReuseIdentifier, for: indexPath) as! SportCollectionViewCell
         let sport = womensSports[indexPath.item]
         cell.configure(for: sport)
+        cell.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 3, height: 3)
+        cell.layer.shadowRadius = 3.0
+        cell.layer.shadowOpacity = 1
+        cell.layer.masksToBounds = false
         return cell
         
     }
@@ -182,15 +236,15 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize  {
         if collectionView == upcomingCollectionView {
-            let size = upcomingCollectionView.frame.width / 2.0 - 15
+//            let size = upcomingCollectionView.frame.width / 2.0 - 15
             return CGSize(width: 175, height: 200)
         }
         if collectionView == mensCollectionView {
-            let size = mensCollectionView.frame.width / 3.0 - 20
-            return CGSize(width: size, height: 100)
+//            let size = mensCollectionView.frame.width / 3.0 - 20
+            return CGSize(width: 100, height: 80)
         }
-        let size = womensCollectionView.frame.width / 3.0 - 20
-        return CGSize(width: size, height: 100)
+//        let size = womensCollectionView.frame.width / 3.0 - 20
+        return CGSize(width: 100, height: 80)
         
     }
     

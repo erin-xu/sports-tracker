@@ -13,13 +13,15 @@ class SportCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.layer.cornerRadius = 4
+        contentView.layer.cornerRadius = 12
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white
         contentView.layer.borderWidth = 0.7
-        contentView.layer.borderColor = UIColor.gray.cgColor
+        contentView.layer.borderColor = UIColor.white.cgColor
                 
         sport.translatesAutoresizingMaskIntoConstraints = false
+        sport.textColor = .black
+        sport.font = .boldSystemFont(ofSize: 15)
         contentView.addSubview(sport)
 
         setupConstraints()
@@ -35,8 +37,10 @@ class SportCollectionViewCell: UICollectionViewCell {
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            sport.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            sport.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+//            sport.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            sport.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            sport.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1/2),
+            sport.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
         
     }
