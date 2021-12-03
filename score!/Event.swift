@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
-class Event : Codable{
-    var sport: String
-    var gender: String
-    var result: String
-    var score: String
-    var opponent: String
-    var location: String
-    var time: String
-    var date: String
-    var unixTime: Int
-    var category: [String]
+struct Event : Codable{
+    let sport: String
+    let gender: String
+    let result: String
+    let score: String
+    let opponent: String
+    let location: String
+    let time: String
+    let date: String
+    let unixTime: Int
+    let category: [String]
     
     init (sport: String, gender: String, result: String, score: String, opponent: String, location: String, time: String, date: String, unixTime: Int) {
         self.sport = sport

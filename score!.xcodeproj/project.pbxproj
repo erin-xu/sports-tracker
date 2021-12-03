@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		529840A0411ED9E92D9C86B9 /* Pods_score_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F1B624ADF538726D13E149C /* Pods_score_.framework */; };
+		BC0BED562759DFF300548022 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0BED552759DFF300548022 /* Team.swift */; };
 		D993CF3827585EA400DAD6AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF3727585EA400DAD6AB /* AppDelegate.swift */; };
 		D993CF3A27585EA400DAD6AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF3927585EA400DAD6AB /* SceneDelegate.swift */; };
 		D993CF3C27585EA400DAD6AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF3B27585EA400DAD6AB /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		6F1B624ADF538726D13E149C /* Pods_score_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_score_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD79327BE0BEC1286A5DBBC /* Pods-score!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-score!.release.xcconfig"; path = "Target Support Files/Pods-score!/Pods-score!.release.xcconfig"; sourceTree = "<group>"; };
+		BC0BED552759DFF300548022 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		D993CF3427585EA400DAD6AB /* score!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "score!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D993CF3727585EA400DAD6AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D993CF3927585EA400DAD6AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				D9B20BBA2759D24900BBE408 /* PushSportViewController.swift */,
 				D9B20BBD2759D28200BBE408 /* EventCollectionViewCell.swift */,
 				D9B20BC52759D7C400BBE408 /* NetworkManager.swift */,
+				BC0BED552759DFF300548022 /* Team.swift */,
 			);
 			path = "score!";
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			files = (
 				D993CF57275896A200DAD6AB /* UpcomingCollectionViewCell.swift in Sources */,
 				D9B20BBE2759D28200BBE408 /* EventCollectionViewCell.swift in Sources */,
+				BC0BED562759DFF300548022 /* Team.swift in Sources */,
 				D9B20BBB2759D24900BBE408 /* PushSportViewController.swift in Sources */,
 				D9B20BC62759D7C400BBE408 /* NetworkManager.swift in Sources */,
 				D9B20BB82759C44A00BBE408 /* Filter.swift in Sources */,
