@@ -55,8 +55,6 @@ class UpcomingViewController: UIViewController {
         
         let filterLayout = UICollectionViewFlowLayout()
         filterLayout.scrollDirection = .horizontal
-//        layout.minimumLineSpacing = cellPadding
-//        layout.minimumInteritemSpacing = cellPadding
         filterLayout.sectionInset = UIEdgeInsets(top: 0, left: sectionPadding, bottom: 0, right: sectionPadding)
         
         filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: filterLayout)
@@ -80,6 +78,7 @@ class UpcomingViewController: UIViewController {
         eventCollectionView = UICollectionView(frame: .zero, collectionViewLayout: eventLayout)
         eventCollectionView.backgroundColor = .clear
         eventCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        eventCollectionView.showsVerticalScrollIndicator = false
         
         
         eventCollectionView.register(DataCollectionViewCell.self, forCellWithReuseIdentifier: dataCellReuseIdentifier)
@@ -128,9 +127,6 @@ class UpcomingViewController: UIViewController {
     
     func fitsFilter(event: Event) -> Bool {
         for filter in filtersSelected {
-//            if event.category.contains(filter.name) {
-//                return true
-//            }
             if event.gender == filter.name || event.sport == filter.name {
                 return true
             }
@@ -169,11 +165,6 @@ extension UpcomingViewController: UICollectionViewDataSource {
             let cell = filterCollectionView.dequeueReusableCell(withReuseIdentifier: filterCellReuseIdentifier, for: indexPath) as! FilterCollectionViewCell
             let filter = filters[indexPath.item]
             cell.configure(for: filter)
-//            cell.layer.shadowColor = UIColor.lightGray.cgColor
-//            cell.layer.shadowOffset = CGSize(width: 3, height: 3)
-//            cell.layer.shadowRadius = 3.0
-//            cell.layer.shadowOpacity = 1
-//            cell.layer.masksToBounds = false
             return cell
         }
     }
@@ -186,10 +177,6 @@ extension UpcomingViewController: UICollectionViewDelegateFlowLayout, UICollecti
             let size = eventCollectionView.frame.width - cellPadding
             return CGSize(width: size, height: 125)
         } else {
-//            let filter = filters[indexPath.item]
-//            let cell = FilterCollectionViewCell()
-//            cell.configure(for: filter)
-//            return CGSize(width: cell.label.frame.width, height: cell.label.frame.height)
             return CGSize(width: 120, height: 80)
         }
     }

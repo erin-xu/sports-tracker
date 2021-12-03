@@ -299,14 +299,11 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize  {
         if collectionView == upcomingCollectionView {
-//            let size = upcomingCollectionView.frame.width / 2.0 - 15
             return CGSize(width: 175, height: 200)
         }
         if collectionView == mensCollectionView {
-//            let size = mensCollectionView.frame.width / 3.0 - 20
             return CGSize(width: 100, height: 80)
         }
-//        let size = womensCollectionView.frame.width / 3.0 - 20
         return CGSize(width: 100, height: 80)
         
     }

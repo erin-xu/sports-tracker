@@ -26,7 +26,6 @@ struct Event : Codable{
     let time: String
     let date: String
     let unixTime: Int
-//    let category: [String]
     
     init (sport: String, gender: String, win: String, score: String, opponent: String, location: String, time: String, date: String, unixTime: Int, id: Int, title: String, description: String, team: EventTeam) {
         self.sport = sport
@@ -38,7 +37,6 @@ struct Event : Codable{
         self.time = time
         self.date = date
         self.unixTime = unixTime
-//        self.category = [gender, sport]
         self.id = id
         self.title = title
         self.description = description
