@@ -11,3 +11,5 @@ git push
 to get stuff:
 
 git pull
+
+:q <hit enter>
