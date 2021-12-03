@@ -20,12 +20,11 @@ class ViewController: UIViewController {
     private var mensCollectionView: UICollectionView!
     private var womensCollectionView: UICollectionView!
     
-    private var allTeams : [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
+    private var allTeams : [Team] = []
     
     private var upcomingEvents: [Event] = []
-//    Event(sport: "Soccer", gender: "Women's", win: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", win: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", win: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432)
-    private var mensSports: [Team] = [Team(id: 1, name: "asdf", gender: "Men's", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "Men's", sport: "Baseball", events: []), Team(id: 1, name: "asdf", gender: "Men's", sport: "Basketball", events: [])]
-    private var womensSports: [Team] = [Team(id: 1, name: "asdf", gender: "Women's", sport: "Soccer", events: [])]
+    private var mensSports: [Team] = []
+    private var womensSports: [Team] = []
     
     private let upcomingCellReuseIdentifier = "upcomingCellReuseIdentifier"
     private let sportsCellReuseIdentifier = "sportsCellReuseIdentifier"
@@ -57,8 +56,6 @@ class ViewController: UIViewController {
             print("got it")
             self.allTeams = teams
             print(teams)
-            self.womensSports.removeAll()
-            self.mensSports.removeAll()
             for team in self.allTeams {
                 if team.gender == "Women's" {
                     self.womensSports.append(team)
@@ -74,7 +71,6 @@ class ViewController: UIViewController {
     func getUpcoming() {
         NetworkManager.getAllEvents() { events in
             self.upcomingEvents = events
-            //might not work..
             self.upcomingEvents.removeAll(where: {$0.unixTime < Int(NSDate().timeIntervalSince1970)})
             print(self.upcomingEvents)
             self.upcomingCollectionView.reloadData()

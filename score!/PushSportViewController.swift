@@ -17,7 +17,6 @@ class PushSportViewController: UIViewController {
     
     //call getByTeam() to get list
     private var events: [TeamEvent] = []
-//    Event(sport: "Soccer", gender: "Women's", win: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", win: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", win: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432)
     private let eventCellReuseIdentifier = "eventCellReuseIdentifier"
     
     private let cellPadding: CGFloat = 10

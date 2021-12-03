@@ -15,8 +15,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     private var opponent = UILabel()
     private var resultScore = UILabel()
     private var location = UILabel()
-    private var layerColor = UIColor.clear
-    private var textColor = UIColor.clear
+    private var layerColor = UIColor.white
+    private var textColor = UIColor.black
     
     func configure(for event: TeamEvent) {
         timeDate.text = event.time + " " + event.date
@@ -27,17 +27,36 @@ class EventCollectionViewCell: UICollectionViewCell {
         location.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
         switch event.win {
         case "W":
-            layerColor = UIColor.init(red: 18/255, green: 154/255, blue: 125/255, alpha: 1)
-            textColor = .white
+            let layerColor = UIColor.init(red: 18/255, green: 154/255, blue: 125/255, alpha: 1)
+            contentView.backgroundColor = layerColor
+            contentView.layer.borderColor = layerColor.cgColor
+            timeDate.textColor = .white
+            opponent.textColor = .white
+            resultScore.textColor = .white
+            location.textColor = .white
         case "L":
-            layerColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1)
-            textColor = .white
+            let layerColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1)
+            contentView.backgroundColor = layerColor
+            contentView.layer.borderColor = layerColor.cgColor
+            timeDate.textColor = .white
+            opponent.textColor = .white
+            resultScore.textColor = .white
+            location.textColor = .white
         case "T":
-            layerColor = UIColor.init(red: 112/255, green: 128/255, blue: 144/255, alpha: 1)
-            textColor = .white
+            let layerColor = UIColor.init(red: 112/255, green: 128/255, blue: 144/255, alpha: 1)
+            contentView.backgroundColor = layerColor
+            contentView.layer.borderColor = layerColor.cgColor
+            timeDate.textColor = .white
+            opponent.textColor = .white
+            resultScore.textColor = .white
+            location.textColor = .white
         default:
-            layerColor = .white
-            textColor = .black
+            contentView.backgroundColor = .white
+            contentView.layer.borderColor = CGColor(gray: 0, alpha: 1)
+            timeDate.textColor = .black
+            opponent.textColor = .black
+            resultScore.textColor = .black
+            location.textColor = .black
         }
     }
 
@@ -46,24 +65,18 @@ class EventCollectionViewCell: UICollectionViewCell {
 
         contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
-        contentView.backgroundColor = layerColor
         contentView.layer.borderWidth = 2.0
-        contentView.layer.borderColor = layerColor.cgColor
         
         timeDate.translatesAutoresizingMaskIntoConstraints = false
-        timeDate.textColor = textColor
         timeDate.font = .systemFont(ofSize: 12)
         contentView.addSubview(timeDate)
         opponent.translatesAutoresizingMaskIntoConstraints = false
-        opponent.textColor = textColor
         opponent.font = .systemFont(ofSize: 17)
         contentView.addSubview(opponent)
         resultScore.translatesAutoresizingMaskIntoConstraints = false
-        resultScore.textColor = textColor
         resultScore.font = .systemFont(ofSize: 17)
         contentView.addSubview(resultScore)
         location.translatesAutoresizingMaskIntoConstraints = false
-        location.textColor = textColor
         location.font = .systemFont(ofSize: 12)
         contentView.addSubview(location)
 
