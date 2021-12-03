@@ -18,6 +18,7 @@ class Event {
     var time: String
     var date: String
     var unixTime: Int
+    var category: [String]
     
     init (sport: String, gender: String, result: String, score: String, opponent: String, location: String, time: String, date: String, unixTime: Int) {
         self.sport = sport
@@ -29,5 +30,6 @@ class Event {
         self.time = time
         self.date = date
         self.unixTime = unixTime
+        self.category = [gender, sport]
     }
 }

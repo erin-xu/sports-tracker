@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     private var scrollView: UIScrollView!
     private var contentView = UIView()
     
+    private var seeAll = UIButton()
     private var upcomingLabel = UILabel()
     private var mensLabel = UILabel()
     private var womensLabel = UILabel()
@@ -41,12 +42,20 @@ class ViewController: UIViewController {
         scrollView.backgroundColor = .white
         scrollView.contentSize = contentView.frame.size
             
-//            CGSize(width: UIScreen.main.bounds.width, height: 2000)
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = true
         
         
-        
+        seeAll.layer.borderWidth = 1
+        seeAll.setTitle(" see all >", for: .normal)
+        seeAll.setTitleColor(UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1), for: UIControl.State.normal)
+        seeAll.backgroundColor = UIColor.white
+        seeAll.layer.borderColor = UIColor.white.cgColor
+        seeAll.layer.cornerRadius = 5
+        seeAll.sizeToFit()
+        seeAll.translatesAutoresizingMaskIntoConstraints = false
+        seeAll.addTarget(self, action: #selector(seeAllTapped), for: .touchUpInside)
+        contentView.addSubview(seeAll)
         
         setupLabels()
         
@@ -111,6 +120,12 @@ class ViewController: UIViewController {
         setupConstraints()
     }
     
+    @objc func seeAllTapped() {
+        let upcomingView = UpcomingViewController()
+        let vc = upcomingView
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func setupLabels() {
         upcomingLabel.text = "Upcoming Events"
         upcomingLabel.font = .systemFont(ofSize: 20)
@@ -149,6 +164,10 @@ class ViewController: UIViewController {
             upcomingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             upcomingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             upcomingLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 34),
+        ])
+        NSLayoutConstraint.activate([
+            seeAll.centerYAnchor.constraint(equalTo: upcomingLabel.centerYAnchor),
+            seeAll.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
         ])
         NSLayoutConstraint.activate([
             upcomingCollectionView.topAnchor.constraint(equalTo: upcomingLabel.bottomAnchor, constant: collectionViewPadding),
@@ -253,6 +272,12 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == mensCollectionView {
+            let view = PushSportViewController()
+            let vc = view
+            navigationController?.pushViewController(vc, animated: true)
+        }
         upcomingCollectionView.reloadData()
         mensCollectionView.reloadData()
         womensCollectionView.reloadData()

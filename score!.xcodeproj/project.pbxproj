@@ -15,6 +15,12 @@
 		D993CF54275894E600DAD6AB /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF53275894E600DAD6AB /* Event.swift */; };
 		D993CF57275896A200DAD6AB /* UpcomingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF56275896A200DAD6AB /* UpcomingCollectionViewCell.swift */; };
 		D993CF5B2758ADDA00DAD6AB /* SportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF5A2758ADDA00DAD6AB /* SportCollectionViewCell.swift */; };
+		D9B20BAF2759C3EA00BBE408 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B20BAE2759C3EA00BBE408 /* UpcomingViewController.swift */; };
+		D9B20BB22759C40E00BBE408 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B20BB12759C40E00BBE408 /* FilterCollectionViewCell.swift */; };
+		D9B20BB52759C42700BBE408 /* DataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B20BB42759C42700BBE408 /* DataCollectionViewCell.swift */; };
+		D9B20BB82759C44A00BBE408 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B20BB72759C44A00BBE408 /* Filter.swift */; };
+		D9B20BBB2759D24900BBE408 /* PushSportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B20BBA2759D24900BBE408 /* PushSportViewController.swift */; };
+		D9B20BBE2759D28200BBE408 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B20BBD2759D28200BBE408 /* EventCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		D993CF53275894E600DAD6AB /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D993CF56275896A200DAD6AB /* UpcomingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCollectionViewCell.swift; sourceTree = "<group>"; };
 		D993CF5A2758ADDA00DAD6AB /* SportCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCell.swift; sourceTree = "<group>"; };
+		D9B20BAE2759C3EA00BBE408 /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
+		D9B20BB12759C40E00BBE408 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		D9B20BB42759C42700BBE408 /* DataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectionViewCell.swift; sourceTree = "<group>"; };
+		D9B20BB72759C44A00BBE408 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		D9B20BBA2759D24900BBE408 /* PushSportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSportViewController.swift; sourceTree = "<group>"; };
+		D9B20BBD2759D28200BBE408 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +81,12 @@
 				D993CF4527585EAA00DAD6AB /* Info.plist */,
 				D993CF53275894E600DAD6AB /* Event.swift */,
 				D993CF5A2758ADDA00DAD6AB /* SportCollectionViewCell.swift */,
+				D9B20BAE2759C3EA00BBE408 /* UpcomingViewController.swift */,
+				D9B20BB12759C40E00BBE408 /* FilterCollectionViewCell.swift */,
+				D9B20BB42759C42700BBE408 /* DataCollectionViewCell.swift */,
+				D9B20BB72759C44A00BBE408 /* Filter.swift */,
+				D9B20BBA2759D24900BBE408 /* PushSportViewController.swift */,
+				D9B20BBD2759D28200BBE408 /* EventCollectionViewCell.swift */,
 			);
 			path = "score!";
 			sourceTree = "<group>";
@@ -143,10 +161,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D993CF57275896A200DAD6AB /* UpcomingCollectionViewCell.swift in Sources */,
+				D9B20BBE2759D28200BBE408 /* EventCollectionViewCell.swift in Sources */,
+				D9B20BBB2759D24900BBE408 /* PushSportViewController.swift in Sources */,
+				D9B20BB82759C44A00BBE408 /* Filter.swift in Sources */,
 				D993CF3C27585EA400DAD6AB /* ViewController.swift in Sources */,
 				D993CF3827585EA400DAD6AB /* AppDelegate.swift in Sources */,
 				D993CF5B2758ADDA00DAD6AB /* SportCollectionViewCell.swift in Sources */,
 				D993CF3A27585EA400DAD6AB /* SceneDelegate.swift in Sources */,
+				D9B20BAF2759C3EA00BBE408 /* UpcomingViewController.swift in Sources */,
+				D9B20BB22759C40E00BBE408 /* FilterCollectionViewCell.swift in Sources */,
+				D9B20BB52759C42700BBE408 /* DataCollectionViewCell.swift in Sources */,
 				D993CF54275894E600DAD6AB /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
