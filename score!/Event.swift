@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Event {
+class Event : Codable{
     var sport: String
     var gender: String
     var result: String
