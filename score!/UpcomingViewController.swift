@@ -17,7 +17,7 @@ class UpcomingViewController: UIViewController {
     
     private var filtersSelected: [Filter] = []
     
-    private var data: [Event] = [Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432)]
+    private var data: [Event] = []
     
     private var dataSelected: [Event] = []
     
@@ -128,7 +128,10 @@ class UpcomingViewController: UIViewController {
     
     func fitsFilter(event: Event) -> Bool {
         for filter in filtersSelected {
-            if event.category.contains(filter.name) {
+//            if event.category.contains(filter.name) {
+//                return true
+//            }
+            if event.gender == filter.name || event.sport == filter.name {
                 return true
             }
         }

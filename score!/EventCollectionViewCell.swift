@@ -17,14 +17,14 @@ class EventCollectionViewCell: UICollectionViewCell {
     private var location = UILabel()
     private var color = CGColor.init(gray: 0.5, alpha: 1.0)
     
-    func configure(for event: Event) {
+    func configure(for event: TeamEvent) {
         timeDate.text = event.time + " " + event.date
         opponent.text = event.opponent
         opponent.font = UIFont.preferredFont(forTextStyle: .body).bold()
-        resultScore.text = event.result + " " + event.score
+        resultScore.text = event.win + " " + event.score
         location.text = event.location
         location.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
-        switch event.result {
+        switch event.win {
         case "W":
             color = CGColor.init(red:0,green:255,blue:0,alpha:1.0)
         case "L":
