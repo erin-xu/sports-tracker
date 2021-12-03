@@ -11,8 +11,7 @@ import UIKit
 
 class PushSportViewController: UIViewController {
     
-    private var gender: String = ""
-    private var sport: String = ""
+    private var team: Team
     
     private var collectionView: UICollectionView!
     
@@ -22,14 +21,19 @@ class PushSportViewController: UIViewController {
     
     private let cellPadding: CGFloat = 10
     
-    func customInit (gender: String, sport: String) {
-        self.gender = gender
-        self.sport = sport
+    init(team: Team) {
+        self.team = team
+        self.events = team.events
+        super.init(nibName: nil, bundle: nil)
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = sport
+        title = team.gender + " " + team.sport
         view.backgroundColor = .white
         
         let layout = UICollectionViewFlowLayout()
