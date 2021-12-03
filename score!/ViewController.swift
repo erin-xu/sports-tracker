@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     private var allTeams : [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
     
     private var upcomingEvents: [Event] = [Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432)]
-    private var mensSports: [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
-    private var womensSports: [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
+    private var mensSports: [Team] = [Team(id: 1, name: "asdf", gender: "Men's", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "Men's", sport: "Baseball", events: []), Team(id: 1, name: "asdf", gender: "Men's", sport: "Basketball", events: [])]
+    private var womensSports: [Team] = [Team(id: 1, name: "asdf", gender: "Women's", sport: "Soccer", events: [Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432)])]
     
     private let upcomingCellReuseIdentifier = "upcomingCellReuseIdentifier"
     private let sportsCellReuseIdentifier = "sportsCellReuseIdentifier"
@@ -313,7 +313,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == mensCollectionView {
-            let view = PushSportViewController()
+            let team = mensSports[indexPath.item]
+            let view = PushSportViewController(team: team)
+            let vc = view
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        if collectionView == womensCollectionView {
+            let team = womensSports[indexPath.item]
+            let view = PushSportViewController(team: team)
             let vc = view
             navigationController?.pushViewController(vc, animated: true)
         }

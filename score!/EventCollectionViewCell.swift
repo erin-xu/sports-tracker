@@ -41,18 +41,22 @@ class EventCollectionViewCell: UICollectionViewCell {
 
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = UIColor.init(red: 66/255, green: 180/255, blue: 75/255, alpha: 1)
         
         self.layer.borderWidth = 2.0
         self.layer.borderColor = color
         
         timeDate.translatesAutoresizingMaskIntoConstraints = false
+        timeDate.textColor = .white
         contentView.addSubview(timeDate)
         opponent.translatesAutoresizingMaskIntoConstraints = false
+        opponent.textColor = .white
         contentView.addSubview(opponent)
         resultScore.translatesAutoresizingMaskIntoConstraints = false
+        resultScore.textColor = .white
         contentView.addSubview(resultScore)
         location.translatesAutoresizingMaskIntoConstraints = false
+        location.textColor = .white
         contentView.addSubview(location)
 
         setupConstraints()
