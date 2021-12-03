@@ -15,15 +15,6 @@ class FilterCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-//        contentView.layer.cornerRadius = 15
-//        contentView.clipsToBounds = true
-//        contentView.backgroundColor = .white
-//        contentView.layer.borderWidth = 0.7
-//        contentView.layer.borderColor = UIColor.white.cgColor
-
-//        label.font = .systemFont(ofSize: 15)
-//        label.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.layer.cornerRadius = 12
         contentView.clipsToBounds = true
@@ -64,18 +55,10 @@ class FilterCollectionViewCell: UICollectionViewCell {
             label.textColor = .black
         }
         label.sizeToFit()
-//        label.frame.size.width += 40
-//        label.frame.size.height += 8
     }
 
     func setupConstraints() {
-//        NSLayoutConstraint.activate([
-//            label.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-//        ])
         NSLayoutConstraint.activate([
-//            sport.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1/2),
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
