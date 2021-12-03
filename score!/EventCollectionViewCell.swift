@@ -15,7 +15,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     private var opponent = UILabel()
     private var resultScore = UILabel()
     private var location = UILabel()
-    private var color = CGColor.init(gray: 0.5, alpha: 1.0)
+    private var layerColor = UIColor()
+    private var textColor = UIColor()
     
     func configure(for event: TeamEvent) {
         timeDate.text = event.time + " " + event.date
@@ -26,37 +27,44 @@ class EventCollectionViewCell: UICollectionViewCell {
         location.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
         switch event.win {
         case "W":
-            color = CGColor.init(red:0,green:255,blue:0,alpha:1.0)
+            layerColor = UIColor.init(red: 18/255, green: 154/255, blue: 125/255, alpha: 1)
+            textColor = .white
         case "L":
-            color = CGColor.init(red:255,green:0,blue:0,alpha:1.0)
+            layerColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1)
+            textColor = .white
         case "T":
-            color = CGColor.init(red:0,green:0,blue:255,alpha:1.0)
+            layerColor = UIColor.init(red: 112/255, green: 128/255, blue: 144/255, alpha: 1)
+            textColor = .white
         default:
-            color = CGColor.init(gray: 0.5, alpha: 1.0)
+            layerColor = .white
+            textColor = .black
         }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
-        contentView.backgroundColor = UIColor.init(red: 66/255, green: 180/255, blue: 75/255, alpha: 1)
-        
-        self.layer.borderWidth = 2.0
-        self.layer.borderColor = color
+        contentView.backgroundColor = layerColor
+        contentView.layer.borderWidth = 2.0
+        contentView.layer.borderColor = layerColor.cgColor
         
         timeDate.translatesAutoresizingMaskIntoConstraints = false
-        timeDate.textColor = .white
+        timeDate.textColor = textColor
+        timeDate.font = .systemFont(ofSize: 12)
         contentView.addSubview(timeDate)
         opponent.translatesAutoresizingMaskIntoConstraints = false
-        opponent.textColor = .white
+        opponent.textColor = textColor
+        opponent.font = .systemFont(ofSize: 17)
         contentView.addSubview(opponent)
         resultScore.translatesAutoresizingMaskIntoConstraints = false
-        resultScore.textColor = .white
+        resultScore.textColor = textColor
+        resultScore.font = .systemFont(ofSize: 17)
         contentView.addSubview(resultScore)
         location.translatesAutoresizingMaskIntoConstraints = false
-        location.textColor = .white
+        location.textColor = textColor
+        location.font = .systemFont(ofSize: 12)
         contentView.addSubview(location)
 
         setupConstraints()
