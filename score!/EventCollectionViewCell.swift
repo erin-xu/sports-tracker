@@ -40,13 +40,13 @@ class EventCollectionViewCell: UICollectionViewCell {
             resultScore.textColor = .white
             location.textColor = .white
         case "L":
-            let layerColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1)
+            let layerColor = UIColor.init(red: 194/255, green: 59/255, blue: 34/255, alpha: 1)
             contentView.backgroundColor = layerColor
             contentView.layer.borderColor = layerColor.cgColor
-            contentView.layer.shadowColor = UIColor.init(red: 244/255, green: 193/255, blue: 193/255, alpha: 1).cgColor
+            contentView.layer.shadowColor = UIColor.init(red: 194/255, green: 59/255, blue: 34/255, alpha: 1).cgColor
             contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
             contentView.layer.shadowRadius = 3.0
-            contentView.layer.shadowOpacity = 1
+            contentView.layer.shadowOpacity = 0.5
             contentView.layer.masksToBounds = false
             timeDate.textColor = .white
             opponent.textColor = .white
@@ -131,18 +131,3 @@ class EventCollectionViewCell: UICollectionViewCell {
     }
 
 }
-
-//extension UIFont {
-//    func withTraits(traits:UIFontDescriptor.SymbolicTraits) -> UIFont {
-//        let descriptor = fontDescriptor.withSymbolicTraits(traits)
-//        return UIFont(descriptor: descriptor!, size: 0)
-//    }
-//
-//    func bold() -> UIFont {
-//        return withTraits(traits: .traitBold)
-//    }
-//
-//    func italic() -> UIFont {
-//        return withTraits(traits: .traitItalic)
-//    }
-//}
