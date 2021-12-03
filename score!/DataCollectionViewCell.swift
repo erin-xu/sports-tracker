@@ -13,6 +13,10 @@ class DataCollectionViewCell: UICollectionViewCell {
     private var title = UILabel()
     private var location = UILabel()
     private var time = UILabel()
+    private var sportString: String = ""
+    private var icon = UIImageView()
+    private var opponentString: String = ""
+    private var oppoIcon = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +35,16 @@ class DataCollectionViewCell: UICollectionViewCell {
 
         time.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(time)
+        
+        icon.contentMode = .scaleAspectFill
+        icon.clipsToBounds = true
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(icon)
+        
+        oppoIcon.contentMode = .scaleAspectFit
+        oppoIcon.clipsToBounds = true
+        oppoIcon.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(oppoIcon)
 
         setupConstraints()
     }
@@ -44,6 +58,45 @@ class DataCollectionViewCell: UICollectionViewCell {
         location.text = event.location
         location.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
         time.text = String(event.time)
+        sportString = event.sport
+        opponentString = event.opponent
+        setIcon()
+    }
+    
+    func setIcon() {
+        switch sportString {
+        case "Soccer" :
+            icon.image = UIImage(named: "soccer.png")
+        case "Tennis":
+            icon.image = UIImage(named: "tennis.png")
+        case "Baseball":
+            icon.image = UIImage(named: "baseball.png")
+        case "Football":
+            icon.image = UIImage(named: "football.png")
+        case "Basketball":
+            icon.image = UIImage(named: "basketball.png")
+        case "Lacrosse":
+            icon.image = UIImage(named: "lacrosse.png")
+        case "Track":
+            icon.image = UIImage(named: "track.png")
+        default:
+            icon.image = UIImage()
+        }
+        
+        switch opponentString {
+        case "Yale" :
+            oppoIcon.image = UIImage(named: "yale.png")
+        case "Columbia":
+            oppoIcon.image = UIImage(named: "columbia.png")
+        case "Stonybrook":
+            oppoIcon.image = UIImage(named: "stonybrook.png")
+        case "Brown":
+            oppoIcon.image = UIImage(named: "brown.png")
+        case "Harvard":
+            oppoIcon.image = UIImage(named: "harvard.png")
+        default:
+            oppoIcon.image = UIImage()
+        }
     }
 
     func setupConstraints() {
@@ -61,7 +114,18 @@ class DataCollectionViewCell: UICollectionViewCell {
             time.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/2),
             time.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
-        
+        NSLayoutConstraint.activate([
+            icon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            icon.heightAnchor.constraint(equalToConstant: 35),
+            icon.widthAnchor.constraint(equalToConstant: 35),
+            icon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+        ])
+        NSLayoutConstraint.activate([
+            oppoIcon.topAnchor.constraint(equalTo: location.topAnchor),
+            oppoIcon.heightAnchor.constraint(equalToConstant: 50),
+            oppoIcon.widthAnchor.constraint(equalToConstant: 50),
+            oppoIcon.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -85)
+        ])
     }
 
 }

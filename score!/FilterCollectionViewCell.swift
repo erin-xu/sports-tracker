@@ -12,6 +12,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     var label = UILabel()
     var select = false
+    var icon = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,7 +34,12 @@ class FilterCollectionViewCell: UICollectionViewCell {
         label.font = .boldSystemFont(ofSize: 15)
         contentView.addSubview(label)
 
-        contentView.addSubview(label)
+        //contentView.addSubview(label)
+        
+        icon.contentMode = .scaleAspectFill
+        icon.clipsToBounds = true
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(icon)
 
         setupConstraints()
     }
@@ -55,6 +61,32 @@ class FilterCollectionViewCell: UICollectionViewCell {
             label.textColor = .black
         }
         label.sizeToFit()
+        setIcon()
+    }
+    
+    func setIcon() {
+        switch label.text {
+        case "Women's" :
+            icon.image = UIImage(named: "woman.png")
+        case "Men's" :
+            icon.image = UIImage(named: "man.png")
+        case "Soccer" :
+            icon.image = UIImage(named: "soccer.png")
+        case "Tennis":
+            icon.image = UIImage(named: "tennis.png")
+        case "Baseball":
+            icon.image = UIImage(named: "baseball.png")
+        case "Football":
+            icon.image = UIImage(named: "football.png")
+        case "Basketball":
+            icon.image = UIImage(named: "basketball.png")
+        case "Lacrosse":
+            icon.image = UIImage(named: "lacrosse.png")
+        case "Track":
+            icon.image = UIImage(named: "track.png")
+        default:
+            icon.image = UIImage()
+        }
     }
 
     func setupConstraints() {
@@ -62,6 +94,12 @@ class FilterCollectionViewCell: UICollectionViewCell {
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             label.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1/2),
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+        ])
+        NSLayoutConstraint.activate([
+            icon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            icon.heightAnchor.constraint(equalToConstant: 25),
+            icon.widthAnchor.constraint(equalToConstant: 25),
+            icon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
         ])
     }
 }
