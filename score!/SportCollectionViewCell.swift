@@ -15,11 +15,12 @@ class SportCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.layer.cornerRadius = 12
+        contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .white
+
+        contentView.backgroundColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1)
         contentView.layer.borderWidth = 0.7
-        contentView.layer.borderColor = UIColor.white.cgColor
+        contentView.layer.borderColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1).cgColor
                 
         sport.translatesAutoresizingMaskIntoConstraints = false
         sport.textColor = .black

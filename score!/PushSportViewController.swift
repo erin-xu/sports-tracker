@@ -82,7 +82,7 @@ extension PushSportViewController: UICollectionViewDelegateFlowLayout, UICollect
     
     func collectionView(_ cv: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.frame.width - cellPadding
-        return CGSize(width: size, height: 75)
+        return CGSize(width: size, height: 100)
     }
     
 }
