@@ -15,8 +15,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     private var opponent = UILabel()
     private var resultScore = UILabel()
     private var location = UILabel()
-    private var layerColor = UIColor()
-    private var textColor = UIColor()
+    private var layerColor = UIColor.clear
+    private var textColor = UIColor.clear
     
     func configure(for event: TeamEvent) {
         timeDate.text = event.time + " " + event.date
