@@ -9,6 +9,7 @@ import UIKit
 
 class UpcomingViewController: UIViewController {
 
+    private var label = UILabel()
     private var filterCollectionView: UICollectionView!
     private var eventCollectionView: UICollectionView!
     
@@ -33,6 +34,11 @@ class UpcomingViewController: UIViewController {
         
         filterData()
         
+        label.text = "Events (" + String(dataSelected.count) + ")"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: 22)
+        view.addSubview(label)
+        
         let filterLayout = UICollectionViewFlowLayout()
         filterLayout.scrollDirection = .horizontal
 //        layout.minimumLineSpacing = cellPadding
@@ -42,6 +48,7 @@ class UpcomingViewController: UIViewController {
         filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: filterLayout)
         filterCollectionView.backgroundColor = .clear
         filterCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        filterCollectionView.showsHorizontalScrollIndicator = false
         
         filterCollectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: filterCellReuseIdentifier)
         
@@ -60,6 +67,7 @@ class UpcomingViewController: UIViewController {
         eventCollectionView.backgroundColor = .clear
         eventCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
+        
         eventCollectionView.register(DataCollectionViewCell.self, forCellWithReuseIdentifier: dataCellReuseIdentifier)
         
         eventCollectionView.dataSource = self
@@ -73,7 +81,11 @@ class UpcomingViewController: UIViewController {
     func setupConstraints(){
         let collectionViewPadding: CGFloat = 12
         NSLayoutConstraint.activate([
-            eventCollectionView.topAnchor.constraint(equalTo: filterCollectionView.bottomAnchor, constant: collectionViewPadding),
+            label.topAnchor.constraint(equalTo: filterCollectionView.bottomAnchor, constant: 15),
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
+        ])
+        NSLayoutConstraint.activate([
+            eventCollectionView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: collectionViewPadding),
             eventCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
             eventCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -collectionViewPadding),
             eventCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
@@ -81,7 +93,7 @@ class UpcomingViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             filterCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: collectionViewPadding),
-            filterCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            filterCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 110),
             filterCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
             filterCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
         ])
@@ -130,11 +142,21 @@ extension UpcomingViewController: UICollectionViewDataSource {
             let cell = eventCollectionView.dequeueReusableCell(withReuseIdentifier: dataCellReuseIdentifier, for: indexPath) as! DataCollectionViewCell
             let event = dataSelected[indexPath.item]
             cell.configure(for: event)
+            cell.layer.shadowColor = UIColor.lightGray.cgColor
+            cell.layer.shadowOffset = CGSize(width: 4, height: 4)
+            cell.layer.shadowRadius = 3.0
+            cell.layer.shadowOpacity = 1
+            cell.layer.masksToBounds = false
             return cell
         } else {
             let cell = filterCollectionView.dequeueReusableCell(withReuseIdentifier: filterCellReuseIdentifier, for: indexPath) as! FilterCollectionViewCell
             let filter = filters[indexPath.item]
             cell.configure(for: filter)
+//            cell.layer.shadowColor = UIColor.lightGray.cgColor
+//            cell.layer.shadowOffset = CGSize(width: 3, height: 3)
+//            cell.layer.shadowRadius = 3.0
+//            cell.layer.shadowOpacity = 1
+//            cell.layer.masksToBounds = false
             return cell
         }
     }
@@ -147,16 +169,17 @@ extension UpcomingViewController: UICollectionViewDelegateFlowLayout, UICollecti
             let size = eventCollectionView.frame.width - cellPadding
             return CGSize(width: size, height: 125)
         } else {
-            let filter = filters[indexPath.item]
-            let cell = FilterCollectionViewCell()
-            cell.configure(for: filter)
-            return CGSize(width: cell.label.frame.width, height: cell.label.frame.height)
+//            let filter = filters[indexPath.item]
+//            let cell = FilterCollectionViewCell()
+//            cell.configure(for: filter)
+//            return CGSize(width: cell.label.frame.width, height: cell.label.frame.height)
+            return CGSize(width: 120, height: 80)
         }
     }
     
     func collectionView(_ cv: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if cv == filterCollectionView {
-            return view.frame.height
+            return cellPadding
         } else {
             return 0 + cellPadding
         }
@@ -177,6 +200,7 @@ extension UpcomingViewController: UICollectionViewDelegateFlowLayout, UICollecti
             }
             
             filterData()
+            label.text = "Events (" + String(dataSelected.count) + ")"
             
             let cell = filterCollectionView.dequeueReusableCell(withReuseIdentifier: filterCellReuseIdentifier, for: indexPath) as! FilterCollectionViewCell
             cell.select.toggle()

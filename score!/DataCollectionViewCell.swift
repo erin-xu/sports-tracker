@@ -21,7 +21,7 @@ class DataCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white
         contentView.layer.borderWidth = 0.7
-        contentView.layer.borderColor = UIColor.gray.cgColor
+        contentView.layer.borderColor = UIColor.white.cgColor
                 
         title.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(title)
