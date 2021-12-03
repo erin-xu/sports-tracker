@@ -267,7 +267,7 @@ extension ViewController: UICollectionViewDataSource {
             cell.configure(for: event)
             
             cell.layer.shadowColor = UIColor.init(red: 244/255, green: 193/255, blue: 193/255, alpha: 1).cgColor
-            cell.layer.shadowOffset = CGSize(width: 6, height: 10)
+            cell.layer.shadowOffset = CGSize(width: 6, height: 6)
             cell.layer.shadowRadius = 3.0
             cell.layer.shadowOpacity = 1
             cell.layer.masksToBounds = false

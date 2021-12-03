@@ -30,6 +30,11 @@ class EventCollectionViewCell: UICollectionViewCell {
             let layerColor = UIColor.init(red: 18/255, green: 154/255, blue: 125/255, alpha: 1)
             contentView.backgroundColor = layerColor
             contentView.layer.borderColor = layerColor.cgColor
+            contentView.layer.shadowColor = UIColor.init(red: 18/255, green: 154/255, blue: 125/255, alpha: 1).cgColor
+            contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
+            contentView.layer.shadowRadius = 3.0
+            contentView.layer.shadowOpacity = 0.5
+            contentView.layer.masksToBounds = false
             timeDate.textColor = .white
             opponent.textColor = .white
             resultScore.textColor = .white
@@ -38,6 +43,11 @@ class EventCollectionViewCell: UICollectionViewCell {
             let layerColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1)
             contentView.backgroundColor = layerColor
             contentView.layer.borderColor = layerColor.cgColor
+            contentView.layer.shadowColor = UIColor.init(red: 244/255, green: 193/255, blue: 193/255, alpha: 1).cgColor
+            contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
+            contentView.layer.shadowRadius = 3.0
+            contentView.layer.shadowOpacity = 1
+            contentView.layer.masksToBounds = false
             timeDate.textColor = .white
             opponent.textColor = .white
             resultScore.textColor = .white
@@ -46,17 +56,27 @@ class EventCollectionViewCell: UICollectionViewCell {
             let layerColor = UIColor.init(red: 112/255, green: 128/255, blue: 144/255, alpha: 1)
             contentView.backgroundColor = layerColor
             contentView.layer.borderColor = layerColor.cgColor
+            contentView.layer.shadowColor = UIColor.init(red: 112/255, green: 128/255, blue: 144/255, alpha: 1).cgColor
+            contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
+            contentView.layer.shadowRadius = 3.0
+            contentView.layer.shadowOpacity = 0.5
+            contentView.layer.masksToBounds = false
             timeDate.textColor = .white
             opponent.textColor = .white
             resultScore.textColor = .white
             location.textColor = .white
         default:
             contentView.backgroundColor = .white
-            contentView.layer.borderColor = CGColor(gray: 0, alpha: 1)
-            timeDate.textColor = .black
-            opponent.textColor = .black
-            resultScore.textColor = .black
-            location.textColor = .black
+            contentView.layer.borderColor = CGColor(gray: 1, alpha: 1)
+            contentView.layer.shadowColor = UIColor.lightGray.cgColor
+            contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
+            contentView.layer.shadowRadius = 3.0
+            contentView.layer.shadowOpacity = 1
+            contentView.layer.masksToBounds = false
+            timeDate.textColor = .gray
+            opponent.textColor = .gray
+            resultScore.textColor = .gray
+            location.textColor = .gray
         }
     }
 
