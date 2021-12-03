@@ -26,6 +26,20 @@ class UpcomingViewController: UIViewController {
     private let dataCellReuseIdentifier = "dataCellReuseIdentifier"
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
+    
+    init(data: [Event], filters: [String]) {
+        self.data = data
+        self.filters.removeAll()
+        for filter in filters {
+            self.filters.append(Filter(name: filter))
+        }
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

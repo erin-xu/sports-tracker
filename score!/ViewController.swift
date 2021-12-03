@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     private var mensCollectionView: UICollectionView!
     private var womensCollectionView: UICollectionView!
     
+    private var allTeams : [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
+    
     private var upcomingEvents: [Event] = [Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432)]
     private var mensSports: [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
     private var womensSports: [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
@@ -51,8 +53,8 @@ class ViewController: UIViewController {
     
     func getTeams() {
         NetworkManager.getAllTeams() { teams in
-            let allTeams = teams
-            for team in allTeams {
+            self.allTeams = teams
+            for team in self.allTeams {
                 if team.gender == "Women's" {
                     self.womensSports.append(team)
                 } else {
@@ -152,7 +154,13 @@ class ViewController: UIViewController {
     }
     
     @objc func seeAllTapped() {
-        let upcomingView = UpcomingViewController()
+        var filters = ["Women's", "Men's"]
+        for team in self.allTeams {
+            if !filters.contains(team.sport) {
+                filters.append(team.sport)
+            }
+        }
+        let upcomingView = UpcomingViewController(data: upcomingEvents, filters: filters)
         let vc = upcomingView
         navigationController?.pushViewController(vc, animated: true)
     }
