@@ -21,8 +21,8 @@ class ViewController: UIViewController {
     private var womensCollectionView: UICollectionView!
     
     private var upcomingEvents: [Event] = [Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432), Event(sport: "Soccer", gender: "Women's", result: "-", score: "-", opponent: "Columbia", location: "Field", time: "3:00pm", date: "Nov. 21, 2021", unixTime: 234432)]
-    private var mensSports: [String] = ["Soccer", "Baseball", "Badminton", "Hockey"]
-    private var womensSports: [String] = ["Volleyball", "Soccer", "Tennis", "Basketball", "Badminton"]
+    private var mensSports: [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: []), Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
+    private var womensSports: [Team] = [Team(id: 1, name: "asdf", gender: "asdf", sport: "Soccer", events: [])]
     
     private let upcomingCellReuseIdentifier = "upcomingCellReuseIdentifier"
     private let sportsCellReuseIdentifier = "sportsCellReuseIdentifier"
@@ -34,31 +34,43 @@ class ViewController: UIViewController {
         title = "Score!"
         view.backgroundColor = .white
         
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        getUpcoming()
+        getTeams()
         
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 700, height: 800))
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .white
-        scrollView.contentSize = contentView.frame.size
-            
-        scrollView.isScrollEnabled = true
-        scrollView.showsVerticalScrollIndicator = true
-        
-        
-        seeAll.layer.borderWidth = 1
-        seeAll.setTitle(" see all >", for: .normal)
-        seeAll.setTitleColor(UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1), for: UIControl.State.normal)
-        seeAll.backgroundColor = UIColor.white
-        seeAll.layer.borderColor = UIColor.white.cgColor
-        seeAll.layer.cornerRadius = 5
-        seeAll.sizeToFit()
-        seeAll.translatesAutoresizingMaskIntoConstraints = false
-        seeAll.addTarget(self, action: #selector(seeAllTapped), for: .touchUpInside)
-        contentView.addSubview(seeAll)
+        setupView()
         
         setupLabels()
         
+        setupCollections()
+        
+        scrollView.addSubview(contentView)
+        view.addSubview(scrollView)
+        
+        setupConstraints()
+    }
+    
+    func getTeams() {
+        NetworkManager.getAllTeams() { teams in
+            let allTeams = teams
+            for team in allTeams {
+                if team.gender == "Women's" {
+                    self.womensSports.append(team)
+                } else {
+                    self.mensSports.append(team)
+                }
+            }
+        }
+    }
+    
+    func getUpcoming() {
+        NetworkManager.getAllEvents() { events in
+            self.upcomingEvents = events
+            //might not work..
+            self.upcomingEvents.removeAll(where: {$0.unixTime < Int(NSDate().timeIntervalSince1970)})
+        }
+    }
+    
+    func setupCollections() {
         let layout1 = UICollectionViewFlowLayout()
         layout1.scrollDirection = .horizontal
         layout1.minimumLineSpacing = cellPadding
@@ -112,12 +124,31 @@ class ViewController: UIViewController {
         womensCollectionView.delegate = self
         
         contentView.addSubview(womensCollectionView)
+    }
+    
+    func setupView() {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .white
         
-        scrollView.addSubview(contentView)
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 700, height: 800))
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .white
+        scrollView.contentSize = contentView.frame.size
+            
+        scrollView.isScrollEnabled = true
+        scrollView.showsVerticalScrollIndicator = true
         
-        view.addSubview(scrollView)
         
-        setupConstraints()
+        seeAll.layer.borderWidth = 1
+        seeAll.setTitle(" see all >", for: .normal)
+        seeAll.setTitleColor(UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1), for: UIControl.State.normal)
+        seeAll.backgroundColor = UIColor.white
+        seeAll.layer.borderColor = UIColor.white.cgColor
+        seeAll.layer.cornerRadius = 5
+        seeAll.sizeToFit()
+        seeAll.translatesAutoresizingMaskIntoConstraints = false
+        seeAll.addTarget(self, action: #selector(seeAllTapped), for: .touchUpInside)
+        contentView.addSubview(seeAll)
     }
     
     @objc func seeAllTapped() {

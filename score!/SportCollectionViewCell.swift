@@ -9,6 +9,8 @@ import UIKit
 
 class SportCollectionViewCell: UICollectionViewCell {
     private var sport = UILabel()
+    private var gender = ""
+    private var id = 0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,8 +33,10 @@ class SportCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(for sport: String) {
-        self.sport.text = sport
+    func configure(for sport: Team) {
+        self.sport.text = sport.sport
+        self.gender = sport.gender
+        self.id = sport.id
     }
 
     func setupConstraints() {
