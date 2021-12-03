@@ -54,6 +54,9 @@ class ViewController: UIViewController {
     func getTeams() {
         NetworkManager.getAllTeams() { teams in
             self.allTeams = teams
+            print(teams)
+            self.womensSports.removeAll()
+            self.mensSports.removeAll()
             for team in self.allTeams {
                 if team.gender == "Women's" {
                     self.womensSports.append(team)
@@ -61,6 +64,8 @@ class ViewController: UIViewController {
                     self.mensSports.append(team)
                 }
             }
+            self.mensCollectionView.reloadData()
+            self.womensCollectionView.reloadData()
         }
     }
     
@@ -69,6 +74,8 @@ class ViewController: UIViewController {
             self.upcomingEvents = events
             //might not work..
             self.upcomingEvents.removeAll(where: {$0.unixTime < Int(NSDate().timeIntervalSince1970)})
+            print(self.upcomingEvents)
+            self.upcomingCollectionView.reloadData()
         }
     }
     

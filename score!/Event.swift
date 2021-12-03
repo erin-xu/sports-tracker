@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+struct EventResponse: Codable {
+    var events: [Event]
+}
+
 struct Event : Codable{
     let sport: String
     let gender: String

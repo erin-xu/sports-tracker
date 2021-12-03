@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class NetworkManager {
-    static let host = ""
+    static let host = "https://scoreproject.herokuapp.com"
     
     static func getAllEvents(completion: @escaping ([Event]) -> Void) {
         let endpt = "\(host)/api/events/"
@@ -22,8 +22,8 @@ class NetworkManager {
                 
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode([Event].self, from: data) {
-                    completion(userResponse)
+                if let userResponse = try? jsonDecoder.decode(EventResponse.self, from: data) {
+                    completion(userResponse.events)
                 }
             }
         }
@@ -58,8 +58,8 @@ class NetworkManager {
                 
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode([Team].self, from: data) {
-                    completion(userResponse)
+                if let userResponse = try? jsonDecoder.decode(TeamResponse.self, from: data) {
+                    completion(userResponse.teams)
                 }
             }
         }

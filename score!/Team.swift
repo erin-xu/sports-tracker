@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct TeamResponse: Codable {
+    var teams: [Team]
+}
+
 struct Team: Codable {
     let id: Int
     let name: String
