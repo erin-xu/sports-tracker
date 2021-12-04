@@ -21,10 +21,8 @@ class NetworkManager {
                 print(error.localizedDescription)
                 
             case .success(let data):
-                print("success")
                 let jsonDecoder = JSONDecoder()
                 if let userResponse = try? jsonDecoder.decode(EventResponse.self, from: data) {
-                    print("worked")
                     completion(userResponse.events)
                 }
             }

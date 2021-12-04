@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     private var scrollView: UIScrollView!
     private var contentView = UIView()
+    private var nextEventView = UIView()
     
     private var seeAll = UIButton()
     private var upcomingLabel = UILabel()
@@ -20,9 +21,17 @@ class ViewController: UIViewController {
     private var mensCollectionView: UICollectionView!
     private var womensCollectionView: UICollectionView!
     
+    private var nextUpLabel = UILabel()
+    private var nextDate = UILabel()
+    private var nextEvent = UILabel()
+    private var nextOppo = UILabel()
+    private var timeAtLocation = UILabel()
+    private var bear = UIImageView()
+    
     private var allTeams : [Team] = []
     
     private var upcomingEvents: [Event] = []
+    private var nextUpcomingEvent: Event = Event()
     private var mensSports: [Team] = []
     private var womensSports: [Team] = []
     
@@ -39,11 +48,14 @@ class ViewController: UIViewController {
         getUpcoming()
         getTeams()
         
+        setupNextUp()
         setupView()
         
         setupLabels()
         
         setupCollections()
+        
+        
         
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
@@ -53,9 +65,7 @@ class ViewController: UIViewController {
     
     func getTeams() {
         NetworkManager.getAllTeams() { teams in
-            print("got it")
             self.allTeams = teams
-            print(teams)
             for team in self.allTeams {
                 if team.gender == "Women's" {
                     self.womensSports.append(team)
@@ -72,8 +82,13 @@ class ViewController: UIViewController {
         NetworkManager.getAllEvents() { events in
             self.upcomingEvents = events
             self.upcomingEvents.removeAll(where: {$0.unixTime < Int(NSDate().timeIntervalSince1970)})
-            print(self.upcomingEvents)
             self.upcomingCollectionView.reloadData()
+            self.nextUpcomingEvent = self.upcomingEvents[0]
+            self.nextDate.text = self.nextUpcomingEvent.date
+            self.nextEvent.text = self.nextUpcomingEvent.gender + " " + self.nextUpcomingEvent.sport
+            self.nextOppo.text = "vs. " + self.nextUpcomingEvent.opponent
+            self.timeAtLocation.text = self.nextUpcomingEvent.time + " @ " + self.nextUpcomingEvent.location + "!"
+            print(self.nextUpcomingEvent)
         }
     }
     
@@ -156,6 +171,15 @@ class ViewController: UIViewController {
         seeAll.translatesAutoresizingMaskIntoConstraints = false
         seeAll.addTarget(self, action: #selector(seeAllTapped), for: .touchUpInside)
         contentView.addSubview(seeAll)
+        
+        let gradient = CAGradientLayer()
+        gradient.frame = nextEventView.bounds
+        gradient.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
+        nextEventView.layer.insertSublayer(gradient, at: 0)
+        nextEventView.layer.borderColor = UIColor.clear.cgColor
+        nextEventView.layer.cornerRadius = 15
+        nextEventView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(nextEventView)
     }
     
     @objc func seeAllTapped() {
@@ -185,6 +209,67 @@ class ViewController: UIViewController {
         womensLabel.font = .systemFont(ofSize: 20)
         womensLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(womensLabel)
+        
+        nextUpLabel.text = "Next Up . . ."
+        nextUpLabel.font = .systemFont(ofSize: 20)
+        nextUpLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(nextUpLabel)
+    }
+    
+    func setupNextUp() {
+
+//        nextDate.text = nextUpcomingEvent.date
+        nextDate.font = .systemFont(ofSize: 18)
+        nextDate.translatesAutoresizingMaskIntoConstraints = false
+        nextEventView.addSubview(nextDate)
+        
+//        nextEvent.text = nextUpcomingEvent.gender + " " + nextUpcomingEvent.sport
+        nextEvent.font = .boldSystemFont(ofSize: 18)
+        nextEvent.translatesAutoresizingMaskIntoConstraints = false
+        nextEventView.addSubview(nextEvent)
+        
+//        nextOppo.text = "vs. " + nextUpcomingEvent.opponent
+        nextOppo.font = .boldSystemFont(ofSize: 18)
+        nextOppo.translatesAutoresizingMaskIntoConstraints = false
+        nextEventView.addSubview(nextOppo)
+        
+//        timeAtLocation.text = nextUpcomingEvent.time + " @ " + nextUpcomingEvent.location + "!"
+        timeAtLocation.font = .systemFont(ofSize: 18)
+        timeAtLocation.translatesAutoresizingMaskIntoConstraints = false
+        nextEventView.addSubview(timeAtLocation)
+        
+        bear.image = UIImage(named: "bear.png")
+        bear.contentMode = .scaleAspectFill
+        bear.clipsToBounds = true
+        bear.translatesAutoresizingMaskIntoConstraints = false
+        nextEventView.addSubview(bear)
+        
+        
+                
+        NSLayoutConstraint.activate([
+            nextDate.topAnchor.constraint(equalTo: nextEventView.topAnchor),
+            nextDate.heightAnchor.constraint(equalTo: nextEventView.heightAnchor, multiplier: 3/4),
+            nextDate.leadingAnchor.constraint(equalTo: nextEventView.leadingAnchor, constant: 15)
+        ])
+        NSLayoutConstraint.activate([
+            nextEvent.bottomAnchor.constraint(equalTo: nextEventView.bottomAnchor, constant: -35),
+            nextEvent.heightAnchor.constraint(equalTo: nextEventView.heightAnchor, multiplier: 1/2),
+            nextEvent.leadingAnchor.constraint(equalTo: nextEventView.leadingAnchor, constant: 15)
+        ])
+        NSLayoutConstraint.activate([
+            nextOppo.topAnchor.constraint(equalTo: nextEvent.topAnchor, constant: 60),
+            nextOppo.leadingAnchor.constraint(equalTo: nextEventView.leadingAnchor, constant: 15)
+        ])
+        NSLayoutConstraint.activate([
+            timeAtLocation.bottomAnchor.constraint(equalTo: nextEventView.bottomAnchor, constant: -15),
+            timeAtLocation.leadingAnchor.constraint(equalTo: nextEventView.leadingAnchor, constant: 15)
+        ])
+        NSLayoutConstraint.activate([
+            bear.trailingAnchor.constraint(equalTo: nextEventView.trailingAnchor, constant: -15),
+            bear.heightAnchor.constraint(equalToConstant: 35),
+            bear.widthAnchor.constraint(equalToConstant: 35),
+            bear.topAnchor.constraint(equalTo: nextEventView.topAnchor, constant: 15),
+        ])
     }
     
     func setupConstraints() {
@@ -204,10 +289,23 @@ class ViewController: UIViewController {
             contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1.1)
         ])
         NSLayoutConstraint.activate([
-            upcomingLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: collectionViewPadding),
+            nextUpLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: collectionViewPadding),
+            nextUpLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            nextUpLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            nextUpLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 38),
+        ])
+        NSLayoutConstraint.activate([
+            nextEventView.topAnchor.constraint(equalTo: nextUpLabel.bottomAnchor, constant: collectionViewPadding),
+            nextEventView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: collectionViewPadding),
+            nextEventView.bottomAnchor.constraint(equalTo: nextUpLabel.topAnchor, constant: 250),
+            nextEventView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -collectionViewPadding)
+        ])
+        //changed constraints
+        NSLayoutConstraint.activate([
+            upcomingLabel.topAnchor.constraint(equalTo: nextEventView.bottomAnchor, constant: 25),
             upcomingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             upcomingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            upcomingLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 34),
+            upcomingLabel.bottomAnchor.constraint(equalTo: nextEventView.bottomAnchor, constant: 48),
         ])
         NSLayoutConstraint.activate([
             seeAll.centerYAnchor.constraint(equalTo: upcomingLabel.centerYAnchor),
@@ -223,7 +321,7 @@ class ViewController: UIViewController {
             mensLabel.topAnchor.constraint(equalTo: upcomingCollectionView.bottomAnchor, constant: 25),
             mensLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             mensLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            mensLabel.bottomAnchor.constraint(equalTo: upcomingCollectionView.bottomAnchor, constant: 44),
+            mensLabel.bottomAnchor.constraint(equalTo: upcomingCollectionView.bottomAnchor, constant: 46),
         ])
         NSLayoutConstraint.activate([
             mensCollectionView.topAnchor.constraint(equalTo: mensLabel.bottomAnchor, constant: collectionViewPadding),
@@ -235,7 +333,7 @@ class ViewController: UIViewController {
             womensLabel.topAnchor.constraint(equalTo: mensCollectionView.bottomAnchor, constant: 15),
             womensLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             womensLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            womensLabel.bottomAnchor.constraint(equalTo: mensCollectionView.bottomAnchor, constant: 34),
+            womensLabel.bottomAnchor.constraint(equalTo: mensCollectionView.bottomAnchor, constant: 36),
         ])
         NSLayoutConstraint.activate([
             womensCollectionView.topAnchor.constraint(equalTo: womensLabel.bottomAnchor, constant: collectionViewPadding),

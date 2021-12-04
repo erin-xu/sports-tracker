@@ -42,6 +42,22 @@ struct Event : Codable{
         self.description = description
         self.team = team
     }
+    
+    init() {
+        self.sport = ""
+        self.gender = ""
+        self.win = ""
+        self.score = ""
+        self.opponent = ""
+        self.location = ""
+        self.time = ""
+        self.date = ""
+        self.unixTime = 0
+        self.id = 0
+        self.title = ""
+        self.description = ""
+        self.team = EventTeam()
+    }
 }
 
 struct TeamEvent : Codable{
@@ -69,6 +85,5 @@ struct TeamEvent : Codable{
         self.unixTime = unixTime
         self.id = id
         self.title = title
-
     }
 }

@@ -24,6 +24,12 @@ struct EventTeam: Codable {
         self.sport = sport
     }
     
+    init() {
+        self.id = 0
+        self.name = ""
+        self.gender = ""
+        self.sport = ""
+    }
 }
 
 struct Team: Codable {
