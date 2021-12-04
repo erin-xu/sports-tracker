@@ -1,4 +1,4 @@
-# sports-tracker
+# score!
 1. App Name: Our app's name is "score!".
 2. App Tagline: An app designed for all Cornell Sports enthusiasts, score! helps its users keep track of Cornell Sporting events.
 3. The ios team members' repository can be found here: https://github.com/erin-xu/sports-tracker
