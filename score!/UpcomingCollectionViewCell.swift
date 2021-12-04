@@ -62,7 +62,7 @@ class UpcomingCollectionViewCell: UICollectionViewCell {
         date.text = event.date
         sport.text = event.gender + " " + event.sport
         opponent.text = "vs. " + event.opponent
-        location.text = event.location
+        location.text = "@ " + event.location
         sportString = event.sport
         setIcon()
     }
