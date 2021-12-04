@@ -32,7 +32,7 @@ class EventCollectionViewCell: UICollectionViewCell {
             contentView.layer.borderColor = layerColor.cgColor
             contentView.layer.shadowColor = UIColor.init(red: 18/255, green: 154/255, blue: 125/255, alpha: 1).cgColor
             contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
-            contentView.layer.shadowRadius = 3.0
+            contentView.layer.shadowRadius = 2.0
             contentView.layer.shadowOpacity = 0.5
             contentView.layer.masksToBounds = false
             timeDate.textColor = .white
@@ -45,7 +45,7 @@ class EventCollectionViewCell: UICollectionViewCell {
             contentView.layer.borderColor = layerColor.cgColor
             contentView.layer.shadowColor = UIColor.init(red: 194/255, green: 59/255, blue: 34/255, alpha: 1).cgColor
             contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
-            contentView.layer.shadowRadius = 3.0
+            contentView.layer.shadowRadius = 2.0
             contentView.layer.shadowOpacity = 0.5
             contentView.layer.masksToBounds = false
             timeDate.textColor = .white
@@ -58,7 +58,7 @@ class EventCollectionViewCell: UICollectionViewCell {
             contentView.layer.borderColor = layerColor.cgColor
             contentView.layer.shadowColor = UIColor.init(red: 112/255, green: 128/255, blue: 144/255, alpha: 1).cgColor
             contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
-            contentView.layer.shadowRadius = 3.0
+            contentView.layer.shadowRadius = 2.0
             contentView.layer.shadowOpacity = 0.5
             contentView.layer.masksToBounds = false
             timeDate.textColor = .white
@@ -70,7 +70,7 @@ class EventCollectionViewCell: UICollectionViewCell {
             contentView.layer.borderColor = CGColor(gray: 1, alpha: 1)
             contentView.layer.shadowColor = UIColor.lightGray.cgColor
             contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
-            contentView.layer.shadowRadius = 3.0
+            contentView.layer.shadowRadius = 2.0
             contentView.layer.shadowOpacity = 1
             contentView.layer.masksToBounds = false
             timeDate.textColor = .gray

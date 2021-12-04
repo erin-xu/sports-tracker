@@ -53,7 +53,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
         select = filter.isSelected
         if select {
             contentView.layer.shadowColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1).cgColor
-            contentView.layer.shadowRadius = 7.0
+            contentView.layer.shadowRadius = 5.0
             label.textColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1)
         } else {
             contentView.layer.shadowColor = UIColor.lightGray.cgColor

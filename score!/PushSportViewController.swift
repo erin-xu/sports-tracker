@@ -70,6 +70,7 @@ class PushSportViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
         navigationController?.navigationBar.tintColor = UIColor.white
+        
         view.backgroundColor = .white
         
         let layout = UICollectionViewFlowLayout()
@@ -84,6 +85,7 @@ class PushSportViewController: UIViewController {
         collectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: eventCellReuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
         view.addSubview(collectionView)
         
         setupSportView()
