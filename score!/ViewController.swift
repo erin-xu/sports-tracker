@@ -46,9 +46,11 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         
         getUpcoming()
+        
         getTeams()
         
         setupNextUp()
+        
         setupView()
         
         setupLabels()
@@ -158,7 +160,7 @@ class ViewController: UIViewController {
         scrollView.contentSize = contentView.frame.size
             
         scrollView.isScrollEnabled = true
-        scrollView.showsVerticalScrollIndicator = true
+        scrollView.showsVerticalScrollIndicator = false
         
         
         seeAll.layer.borderWidth = 1
@@ -172,12 +174,17 @@ class ViewController: UIViewController {
         seeAll.addTarget(self, action: #selector(seeAllTapped), for: .touchUpInside)
         contentView.addSubview(seeAll)
         
-        let gradient = CAGradientLayer()
-        gradient.frame = nextEventView.bounds
-        gradient.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
-        nextEventView.layer.insertSublayer(gradient, at: 0)
-        nextEventView.layer.borderColor = UIColor.clear.cgColor
+        nextEventView.layer.masksToBounds = true
+        nextEventView.clipsToBounds = false
+        nextEventView.layer.borderColor = UIColor.white.cgColor
         nextEventView.layer.cornerRadius = 15
+        nextEventView.layer.borderWidth = 2
+        nextEventView.layer.backgroundColor = UIColor.white.cgColor
+        nextEventView.layer.shadowColor = UIColor.lightGray.cgColor
+        nextEventView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        nextEventView.layer.shadowRadius = 8.0
+        nextEventView.layer.shadowOpacity = 1
+        
         nextEventView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nextEventView)
     }
@@ -210,7 +217,7 @@ class ViewController: UIViewController {
         womensLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(womensLabel)
         
-        nextUpLabel.text = "Next Up . . ."
+        nextUpLabel.text = "Next Up"
         nextUpLabel.font = .systemFont(ofSize: 20)
         nextUpLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nextUpLabel)
@@ -218,46 +225,38 @@ class ViewController: UIViewController {
     
     func setupNextUp() {
 
-//        nextDate.text = nextUpcomingEvent.date
         nextDate.font = .systemFont(ofSize: 18)
         nextDate.translatesAutoresizingMaskIntoConstraints = false
         nextEventView.addSubview(nextDate)
         
-//        nextEvent.text = nextUpcomingEvent.gender + " " + nextUpcomingEvent.sport
-        nextEvent.font = .boldSystemFont(ofSize: 18)
+        nextEvent.font = .boldSystemFont(ofSize: 25)
         nextEvent.translatesAutoresizingMaskIntoConstraints = false
         nextEventView.addSubview(nextEvent)
         
-//        nextOppo.text = "vs. " + nextUpcomingEvent.opponent
-        nextOppo.font = .boldSystemFont(ofSize: 18)
+        nextOppo.font = .boldSystemFont(ofSize: 25)
         nextOppo.translatesAutoresizingMaskIntoConstraints = false
         nextEventView.addSubview(nextOppo)
         
-//        timeAtLocation.text = nextUpcomingEvent.time + " @ " + nextUpcomingEvent.location + "!"
         timeAtLocation.font = .systemFont(ofSize: 18)
         timeAtLocation.translatesAutoresizingMaskIntoConstraints = false
         nextEventView.addSubview(timeAtLocation)
         
-        bear.image = UIImage(named: "bear.png")
+        bear.image = UIImage(named: "cutebear.jpeg")
         bear.contentMode = .scaleAspectFill
         bear.clipsToBounds = true
         bear.translatesAutoresizingMaskIntoConstraints = false
         nextEventView.addSubview(bear)
-        
-        
                 
         NSLayoutConstraint.activate([
-            nextDate.topAnchor.constraint(equalTo: nextEventView.topAnchor),
-            nextDate.heightAnchor.constraint(equalTo: nextEventView.heightAnchor, multiplier: 3/4),
+            nextDate.topAnchor.constraint(equalTo: nextEventView.topAnchor, constant: 45),
             nextDate.leadingAnchor.constraint(equalTo: nextEventView.leadingAnchor, constant: 15)
         ])
         NSLayoutConstraint.activate([
-            nextEvent.bottomAnchor.constraint(equalTo: nextEventView.bottomAnchor, constant: -35),
-            nextEvent.heightAnchor.constraint(equalTo: nextEventView.heightAnchor, multiplier: 1/2),
+            nextEvent.bottomAnchor.constraint(equalTo: nextEventView.centerYAnchor),
             nextEvent.leadingAnchor.constraint(equalTo: nextEventView.leadingAnchor, constant: 15)
         ])
         NSLayoutConstraint.activate([
-            nextOppo.topAnchor.constraint(equalTo: nextEvent.topAnchor, constant: 60),
+            nextOppo.topAnchor.constraint(equalTo: nextEvent.bottomAnchor, constant: 8),
             nextOppo.leadingAnchor.constraint(equalTo: nextEventView.leadingAnchor, constant: 15)
         ])
         NSLayoutConstraint.activate([
@@ -266,9 +265,9 @@ class ViewController: UIViewController {
         ])
         NSLayoutConstraint.activate([
             bear.trailingAnchor.constraint(equalTo: nextEventView.trailingAnchor, constant: -15),
-            bear.heightAnchor.constraint(equalToConstant: 35),
-            bear.widthAnchor.constraint(equalToConstant: 35),
-            bear.topAnchor.constraint(equalTo: nextEventView.topAnchor, constant: 15),
+            bear.heightAnchor.constraint(equalToConstant: 100),
+            bear.widthAnchor.constraint(equalToConstant: 100),
+            bear.centerYAnchor.constraint(equalTo: nextEventView.centerYAnchor)
         ])
     }
     
@@ -300,7 +299,6 @@ class ViewController: UIViewController {
             nextEventView.bottomAnchor.constraint(equalTo: nextUpLabel.topAnchor, constant: 250),
             nextEventView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -collectionViewPadding)
         ])
-        //changed constraints
         NSLayoutConstraint.activate([
             upcomingLabel.topAnchor.constraint(equalTo: nextEventView.bottomAnchor, constant: 25),
             upcomingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
