@@ -23,7 +23,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         opponent.text = event.opponent
         opponent.font = UIFont.preferredFont(forTextStyle: .body).bold()
         resultScore.text = event.win + " " + event.score
-        location.text = event.location
+        location.text = "@ " + event.location
         location.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
         switch event.win {
         case "W":

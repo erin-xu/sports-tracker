@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Score!"
+        title = "score!"
         view.backgroundColor = .white
         
         getUpcoming()
