@@ -71,7 +71,7 @@ class DataCollectionViewCell: UICollectionViewCell {
         title.text = event.gender + " " + event.sport + " vs. " + event.opponent
         location.text = event.location
         location.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
-        time.text = String(event.time)
+        time.text = String(event.date)
         time.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
         sportString = event.sport
         opponentString = event.opponent
