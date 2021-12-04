@@ -17,6 +17,8 @@ class DataCollectionViewCell: UICollectionViewCell {
     private var icon = UIImageView()
     private var opponentString: String = ""
     private var oppoIcon = UIImageView()
+    private var locationIcon = UIImageView()
+    private var timeIcon = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,6 +47,18 @@ class DataCollectionViewCell: UICollectionViewCell {
         oppoIcon.clipsToBounds = true
         oppoIcon.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(oppoIcon)
+        
+        locationIcon.image = UIImage(named: "location.png")
+        locationIcon.contentMode = .scaleAspectFill
+        locationIcon.clipsToBounds = true
+        locationIcon.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(locationIcon)
+        
+        timeIcon.image = UIImage(named: "time.png")
+        timeIcon.contentMode = .scaleAspectFill
+        timeIcon.clipsToBounds = true
+        timeIcon.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(timeIcon)
 
         setupConstraints()
     }
@@ -58,6 +72,7 @@ class DataCollectionViewCell: UICollectionViewCell {
         location.text = event.location
         location.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
         time.text = String(event.time)
+        time.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
         sportString = event.sport
         opponentString = event.opponent
         setIcon()
@@ -107,12 +122,12 @@ class DataCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             location.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 15),
             location.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/2),
-            location.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            location.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 15),
         ])
         NSLayoutConstraint.activate([
             time.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 10),
             time.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/2),
-            time.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            time.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 15),
         ])
         NSLayoutConstraint.activate([
             icon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
@@ -125,6 +140,18 @@ class DataCollectionViewCell: UICollectionViewCell {
             oppoIcon.heightAnchor.constraint(equalToConstant: 50),
             oppoIcon.widthAnchor.constraint(equalToConstant: 50),
             oppoIcon.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -85)
+        ])
+        NSLayoutConstraint.activate([
+            locationIcon.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 16),
+            locationIcon.heightAnchor.constraint(equalToConstant: 12),
+            locationIcon.widthAnchor.constraint(equalToConstant: 12),
+            locationIcon.trailingAnchor.constraint(equalTo: location.leadingAnchor, constant: -5)
+        ])
+        NSLayoutConstraint.activate([
+            timeIcon.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 11),
+            timeIcon.heightAnchor.constraint(equalToConstant: 12),
+            timeIcon.widthAnchor.constraint(equalToConstant: 12),
+            timeIcon.trailingAnchor.constraint(equalTo: time.leadingAnchor, constant: -5)
         ])
     }
 

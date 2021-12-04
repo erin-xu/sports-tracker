@@ -23,6 +23,8 @@
 		BC0BED70275ACF0500548022 /* harvard.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0BED6B275ACF0500548022 /* harvard.png */; };
 		BC0BED72275ACF0500548022 /* stonybrook.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0BED6D275ACF0500548022 /* stonybrook.png */; };
 		BC0BED74275AD18300548022 /* columbia.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0BED73275AD18300548022 /* columbia.png */; };
+		BC0BED77275AE5FC00548022 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0BED75275AE5FC00548022 /* location.png */; };
+		BC0BED78275AE5FC00548022 /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0BED76275AE5FC00548022 /* time.png */; };
 		D993CF3827585EA400DAD6AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF3727585EA400DAD6AB /* AppDelegate.swift */; };
 		D993CF3A27585EA400DAD6AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF3927585EA400DAD6AB /* SceneDelegate.swift */; };
 		D993CF3C27585EA400DAD6AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CF3B27585EA400DAD6AB /* ViewController.swift */; };
@@ -58,6 +60,8 @@
 		BC0BED6B275ACF0500548022 /* harvard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = harvard.png; sourceTree = "<group>"; };
 		BC0BED6D275ACF0500548022 /* stonybrook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stonybrook.png; sourceTree = "<group>"; };
 		BC0BED73275AD18300548022 /* columbia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = columbia.png; sourceTree = "<group>"; };
+		BC0BED75275AE5FC00548022 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		BC0BED76275AE5FC00548022 /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
 		D993CF3427585EA400DAD6AB /* score!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "score!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D993CF3727585EA400DAD6AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D993CF3927585EA400DAD6AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 		D993CF3627585EA400DAD6AB /* score! */ = {
 			isa = PBXGroup;
 			children = (
+				BC0BED75275AE5FC00548022 /* location.png */,
+				BC0BED76275AE5FC00548022 /* time.png */,
 				BC0BED73275AD18300548022 /* columbia.png */,
 				BC0BED69275ACF0500548022 /* brown.png */,
 				BC0BED6B275ACF0500548022 /* harvard.png */,
@@ -224,6 +230,7 @@
 			files = (
 				BC0BED58275AC6B200548022 /* baseball.png in Resources */,
 				BC0BED68275ACB2000548022 /* man.png in Resources */,
+				BC0BED78275AE5FC00548022 /* time.png in Resources */,
 				D993CF4427585EAA00DAD6AB /* LaunchScreen.storyboard in Resources */,
 				BC0BED63275AC6C200548022 /* football.png in Resources */,
 				BC0BED60275AC6C200548022 /* lacrosse.png in Resources */,
@@ -233,6 +240,7 @@
 				BC0BED70275ACF0500548022 /* harvard.png in Resources */,
 				BC0BED6E275ACF0500548022 /* brown.png in Resources */,
 				BC0BED72275ACF0500548022 /* stonybrook.png in Resources */,
+				BC0BED77275AE5FC00548022 /* location.png in Resources */,
 				BC0BED74275AD18300548022 /* columbia.png in Resources */,
 				BC0BED64275AC6C200548022 /* soccer.png in Resources */,
 				D993CF4127585EAA00DAD6AB /* Assets.xcassets in Resources */,
