@@ -179,7 +179,7 @@ class ViewController: UIViewController {
         nextEventView.layer.backgroundColor = UIColor.white.cgColor
         nextEventView.layer.shadowColor = UIColor.lightGray.cgColor
         nextEventView.layer.shadowOffset = CGSize(width: 5, height: 5)
-        nextEventView.layer.shadowRadius = 5.0
+        nextEventView.layer.shadowRadius = 10.0
         nextEventView.layer.shadowOpacity = 1
         
         nextEventView.translatesAutoresizingMaskIntoConstraints = false
