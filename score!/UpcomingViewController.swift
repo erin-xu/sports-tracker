@@ -43,6 +43,8 @@ class UpcomingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor.init(red: 238/255, green: 105/255, blue: 105/255, alpha: 1)
+        
         title = "Upcoming Events"
         view.backgroundColor = .white
         

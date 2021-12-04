@@ -57,8 +57,6 @@ class ViewController: UIViewController {
         
         setupCollections()
         
-        
-        
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
         
@@ -90,7 +88,6 @@ class ViewController: UIViewController {
             self.nextEvent.text = self.nextUpcomingEvent.gender + " " + self.nextUpcomingEvent.sport
             self.nextOppo.text = "vs. " + self.nextUpcomingEvent.opponent
             self.timeAtLocation.text = self.nextUpcomingEvent.time + " @ " + self.nextUpcomingEvent.location + "!"
-            print(self.nextUpcomingEvent)
         }
     }
     

@@ -13,6 +13,12 @@ class PushSportViewController: UIViewController {
     
     private var team: Team
     
+    private var scrollView: UIScrollView!
+    private var contentView = UIView()
+    private var sportView = UIView()
+    private var sportPic = UIImageView()
+    private var titleLabel = UILabel()
+    
     private var collectionView: UICollectionView!
     
     //call getByTeam() to get list
@@ -24,7 +30,32 @@ class PushSportViewController: UIViewController {
     init(team: Team) {
         self.team = team
         self.events = team.events
+        self.titleLabel.text = team.gender + " " + team.sport
         super.init(nibName: nil, bundle: nil)
+        switch self.titleLabel.text {
+        case "Men's Soccer" :
+            sportPic.image = UIImage(named: "msoccer.gif")
+        case "Men's Tennis" :
+            sportPic.image = UIImage(named: "mtennis.jpg")
+        case "Men's Baseball" :
+            sportPic.image = UIImage(named: "mbaseball.jpg")
+        case "Men's Football" :
+            sportPic.image = UIImage(named: "mfootball.jpg")
+        case "Men's Basketball" :
+            sportPic.image = UIImage(named: "mbasketball.jpg")
+        case "Women's Soccer" :
+            sportPic.image = UIImage(named: "wsoccer.jpg")
+        case "Women's Tennis" :
+            sportPic.image = UIImage(named: "wtennis.jpg")
+        case "Women's Basketball" :
+            sportPic.image = UIImage(named: "wbasketball.jpg")
+        case "Women's Lacrosse" :
+            sportPic.image = UIImage(named: "wlacrosse.jpeg")
+        case "Women's Track" :
+            sportPic.image = UIImage(named: "wtrack.jpg")
+        default :
+            sportPic.image = UIImage()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -33,7 +64,12 @@ class PushSportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = team.gender + " " + team.sport
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = UIColor.white
         view.backgroundColor = .white
         
         let layout = UICollectionViewFlowLayout()
@@ -50,15 +86,48 @@ class PushSportViewController: UIViewController {
         collectionView.delegate = self
         view.addSubview(collectionView)
         
+        setupSportView()
+        
         setupConstraints()
+    }
+    
+    func setupSportView() {
+        sportPic.contentMode = .scaleAspectFill
+        sportPic.clipsToBounds = true
+        sportPic.translatesAutoresizingMaskIntoConstraints = false
+        sportView.addSubview(sportPic)
+        
+        titleLabel.font = .boldSystemFont(ofSize: 34)
+        titleLabel.textColor = .white
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        sportView.addSubview(titleLabel)
+        
+        sportView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(sportView)
     }
     
     func setupConstraints(){
         let collectionViewPadding: CGFloat = 12
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: collectionViewPadding),
+            sportPic.topAnchor.constraint(equalTo: sportView.topAnchor),
+            sportPic.leadingAnchor.constraint(equalTo: sportView.leadingAnchor),
+            sportPic.trailingAnchor.constraint(equalTo: sportView.trailingAnchor),
+            sportPic.bottomAnchor.constraint(equalTo: sportView.bottomAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            titleLabel.bottomAnchor.constraint(equalTo: sportView.bottomAnchor, constant: -15),
+            titleLabel.leadingAnchor.constraint(equalTo: sportView.leadingAnchor, constant: 15)
+        ])
+        NSLayoutConstraint.activate([
+            sportView.topAnchor.constraint(equalTo: view.topAnchor),
+            sportView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            sportView.heightAnchor.constraint(equalToConstant: 300),
+            sportView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: sportView.bottomAnchor, constant: collectionViewPadding),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -collectionViewPadding),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -collectionViewPadding),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
         ])
     }
