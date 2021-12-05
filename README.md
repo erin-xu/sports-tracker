@@ -8,11 +8,12 @@
 
 When the app is launched, the home screen is shown. On this screen, the next sports event is displayed at the top, along with the team, opponent, date, time, and location. More upcoming events are displayed below in a horizontally-scrollable collection view, including the date, team, opponent, and location. The “see all” button can be clicked to open the upcoming events page.  
 
-<img height="700" alt="ss3" src="https://user-images.githubusercontent.com/82056699/144698280-29c826a7-c969-4f5c-b470-4d0940c2a75e.png"> <img height="700" alt="ss5" src="https://user-images.githubusercontent.com/82056699/144698338-1e72c89f-60d3-4344-9b96-3af9586c8ff2.png">
+<img height="700" alt="upcoming1" src="https://user-images.githubusercontent.com/57200368/144732037-89644aea-f176-4765-948d-96434d001174.png"> <img height="700" alt="upcoming2" src="https://user-images.githubusercontent.com/57200368/144732045-c5436c56-c8e4-4799-b881-c7a0dd7a002f.png">
+
 
 On this page, all upcoming events can be viewed and searched through using gender and sport filters. The team, location, time, date, and opponent is displayed for each upcoming event.
 
-<img height="700" alt="ss6" src="https://user-images.githubusercontent.com/82056699/144698430-80770225-5800-4782-831f-82212aadf557.png"> <img height="700" alt="ss7" src="https://user-images.githubusercontent.com/82056699/144698519-7ad8f779-c423-425b-96cc-1174993c5d4f.png">
+<img height="700" alt="sport1" src="https://user-images.githubusercontent.com/57200368/144732053-2396a25f-bcb9-44e3-bb48-b31196db69f6.png"> <img height="700" alt="sport2" src="https://user-images.githubusercontent.com/57200368/144732054-6c79333f-cd4f-479a-a3f0-d74c5cf3a208.png">
 
 Sports events can also be browsed by team. When clicking on a sports team on the home page, a new page opens with a complete schedule of past and future games. The date, opponent, and location is displayed for each of these events. If the event has already occurred, the result is displayed as well.
 
